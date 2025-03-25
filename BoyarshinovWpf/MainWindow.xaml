@@ -1,0 +1,202 @@
+﻿<Window x:Class="BoyarshinovWpf.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BoyarshinovWpf"
+        mc:Ignorable="d"
+        Title="Бизнес партнеры" Height="600" Width="900" 
+        Background="#252526" Foreground="White" 
+        WindowStartupLocation="CenterScreen">
+    <!-- Основное окно приложения с указанием пространства имен и базовых настроек -->
+    <!-- Title: заголовок окна -->
+    <!-- Height и Width: размеры окна -->
+    <!-- Background и Foreground: цвет фона и текста -->
+    <!-- WindowStartupLocation: окно открывается по центру экрана -->
+
+    <Window.Resources>
+        <!-- Ресурсы окна: стили для элементов интерфейса -->
+
+        <!-- Стиль для кнопок -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#007ACC"/>
+            <!-- Цвет фона кнопки (синий) -->
+            <Setter Property="Foreground" Value="White"/>
+            <!-- Цвет текста (белый) -->
+            <Setter Property="FontWeight" Value="Bold"/>
+            <!-- Жирный шрифт -->
+            <Setter Property="Padding" Value="6,3"/>
+            <!-- Внутренние отступы -->
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <!-- Прозрачная граница -->
+            <Setter Property="Cursor" Value="Hand"/>
+            <!-- Курсор в виде руки при наведении -->
+            <Setter Property="Margin" Value="5"/>
+            <!-- Внешние отступы -->
+        </Style>
+
+        <!-- Стиль для элементов списка (ListBoxItem) -->
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Padding" Value="10"/>
+            <!-- Внутренние отступы -->
+            <Setter Property="Margin" Value="5"/>
+            <!-- Внешние отступы -->
+            <Setter Property="BorderThickness" Value="1"/>
+            <!-- Толщина границы -->
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <!-- Цвет границы (серый) -->
+            <Setter Property="Background" Value="#333"/>
+            <!-- Цвет фона (темно-серый) -->
+            <Setter Property="Foreground" Value="White"/>
+            <!-- Цвет текста (белый) -->
+            <Setter Property="Cursor" Value="Hand"/>
+            <!-- Курсор в виде руки -->
+        </Style>
+
+        <!-- Стиль для таблицы (DataGrid) -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="#333"/>
+            <!-- Цвет фона (темно-серый) -->
+            <Setter Property="Foreground" Value="White"/>
+            <!-- Цвет текста (белый) -->
+            <Setter Property="GridLinesVisibility" Value="None"/>
+            <!-- Отключение линий сетки -->
+        </Style>
+
+        <!-- Стиль для заголовков столбцов таблицы -->
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#007ACC"/>
+            <!-- Цвет фона (синий) -->
+            <Setter Property="Foreground" Value="White"/>
+            <!-- Цвет текста (белый) -->
+            <Setter Property="FontWeight" Value="Bold"/>
+            <!-- Жирный шрифт -->
+            <Setter Property="Padding" Value="5"/>
+            <!-- Внутренние отступы -->
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Основная сетка для размещения элементов интерфейса -->
+        <DockPanel>
+            <!-- Панель с фиксированным размещением элементов -->
+
+            <!-- Меню вверху окна -->
+            <Menu DockPanel.Dock="Top" Background="#1E1E1E" Foreground="Gray" Height="30">
+                <!-- DockPanel.Dock="Top": закреплено вверху -->
+                <!-- Background: темно-серый фон -->
+                <!-- Foreground: серый цвет текста -->
+
+                <!-- Пункт меню "Бизнес партнеры" -->
+                <MenuItem Header="Бизнес партнеры">
+                    <MenuItem Header="Добавить" Click="AddPartner_Click"/>
+                    <!-- Добавление партнера -->
+                    <MenuItem Header="Редактировать" Click="EditPartner_Click"/>
+                    <!-- Редактирование партнера -->
+                    <Separator/>
+                    <!-- Разделитель -->
+                    <MenuItem Header="Удалить" Click="DeletePartner_Click"/>
+                    <!-- Удаление партнера -->
+                </MenuItem>
+
+                <!-- Пункт меню "Продукция" -->
+                <MenuItem Header="Продукция">
+                    <MenuItem Header="Добавить" Click="AddSale_Click"/>
+                    <!-- Добавление продажи -->
+                    <MenuItem Header="Редактировать" Click="EditSale_Click"/>
+                    <!-- Редактирование продажи -->
+                    <Separator/>
+                    <!-- Разделитель -->
+                    <MenuItem Header="Удалить" Click="DeleteSale_Click"/>
+                    <!-- Удаление продажи -->
+                </MenuItem>
+
+                <!-- Пункт меню "Выход" -->
+                <MenuItem Header="Выход" Click="Exit_Click"/>
+                <!-- Выход из приложения -->
+            </Menu>
+
+            <Grid>
+                <!-- Внутренняя сетка для разделения на две колонки -->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="280"/>
+                    <!-- Фиксированная ширина левой колонки -->
+                    <ColumnDefinition Width="*"/>
+                    <!-- Правая колонка занимает оставшееся место -->
+                </Grid.ColumnDefinitions>
+
+                <!-- Левая панель: список бизнес-партнеров -->
+                <Border Background="#333" Padding="10" Grid.Column="0" CornerRadius="8" Margin="10">
+                    <!-- Background: темно-серый фон -->
+                    <!-- Padding: внутренние отступы -->
+                    <!-- CornerRadius: скругленные углы -->
+                    <!-- Margin: внешние отступы -->
+                    <StackPanel>
+                        <!-- Вертикальный контейнер для элементов -->
+                        <TextBlock Text="Бизнес партнеры" FontSize="16" FontWeight="Bold" Foreground="White" Margin="0,0,0,10"/>
+                        <!-- Заголовок панели -->
+
+                        <ListBox x:Name="PartnersList" ItemsSource="{Binding BusinessPartner}" Background="#252526">
+                            <!-- Список партнеров, привязанный к коллекции BusinessPartner -->
+                            <!-- Background: темно-серый фон -->
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <!-- Шаблон отображения каждого элемента списка -->
+                                    <Border BorderBrush="Gray" BorderThickness="1" Padding="8" Background="#444" CornerRadius="5">
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold" FontSize="14">
+                                                <!-- Тип и название партнера -->
+                                                <Run Text="{Binding PartnerType}" />
+                                                <Run Text=" | " />
+                                                <Run Text="{Binding PartnerName}" />
+                                            </TextBlock>
+                                            <TextBlock Text="{Binding DirectorName}" Margin="0,3,0,0"/>
+                                            <!-- Имя директора -->
+                                            <TextBlock Text="{Binding ContactPhone}" Margin="0,3,0,0"/>
+                                            <!-- Телефон -->
+                                            <TextBlock>
+                                                <!-- Рейтинг партнера -->
+                                                <Run Text="Рейтинг: " />
+                                                <Run Text="{Binding PartnerRating}" FontWeight="Bold" Foreground="LightGreen"/>
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </Border>
+
+                <!-- Правая панель: таблица продаж -->
+                <Border Background="#2D2D30" Padding="10" Grid.Column="1" CornerRadius="8" Margin="10">
+                    <!-- Background: чуть светлее серый фон -->
+                    <!-- Padding: внутренние отступы -->
+                    <!-- CornerRadius: скругленные углы -->
+                    <!-- Margin: внешние отступы -->
+                    <StackPanel>
+                        <TextBlock Text="Продажи" FontSize="16" FontWeight="Bold" Foreground="White" Margin="0,0,0,10"/>
+                        <!-- Заголовок панели -->
+
+                        <DataGrid x:Name="SalesDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True" HeadersVisibility="Column" 
+                                  SelectionMode="Single">
+                            <!-- Таблица продаж -->
+                            <!-- AutoGenerateColumns="False": столбцы задаются вручную -->
+                            <!-- CanUserAddRows="False": нельзя добавлять строки -->
+                            <!-- IsReadOnly="True": только для чтения -->
+                            <!-- HeadersVisibility="Column": видны только заголовки столбцов -->
+                            <!-- SelectionMode="Single": выбор одной строки -->
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Наименование" Binding="{Binding ProductName}" Width="*"/>
+                                <!-- Столбец с названием продукта -->
+                                <DataGridTextColumn Header="Дата продажи" Binding="{Binding SaleDate, StringFormat={}{0:dd.MM.yyyy}}" Width="*"/>
+                                <!-- Столбец с датой продажи в формате дд.ММ.гггг -->
+                                <DataGridTextColumn Header="Количество" Binding="{Binding ProductQuantity}" Width="*"/>
+                                <!-- Столбец с количеством -->
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Window>

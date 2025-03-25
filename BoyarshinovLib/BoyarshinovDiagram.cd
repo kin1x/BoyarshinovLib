@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BoyarshinovLib.PartnerSale">
+    <Position X="8.5" Y="3.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAAAEAAAAAAAAAAAEEIEAA=</HashCode>
+      <FileName>PartnerSale.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SalePartner" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BoyarshinovLib.PartnerDiscount">
+    <Position X="8.5" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAAAAAAAAAAAAAAAAgAABAAAAAAAAACAAA=</HashCode>
+      <FileName>PartnerDiscount.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="AssociatedPartner" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="BoyarshinovLib.BusinessPartnerViewModel">
+    <Position X="8.5" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAGAAAAQAAAAAAAAAAAAAAAAAAAAAAEAAAgAAgCAAA=</HashCode>
+      <FileName>BusinessPartnerViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BoyarshinovLib.BusinessPartner">
+    <Position X="5.25" Y="1.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAQAAEAAAAAAAAAAAAIAAABAAUAAAhAAgAAAA=</HashCode>
+      <FileName>BusinessPartner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BoyarshinovLib.ApplicationContext">
+    <Position X="5.25" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAQAAAAAAAAAAAAMAAAAAAQABAAAAAAAAA=</HashCode>
+      <FileName>ApplicationContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BoyarshinovLib.BusinessPartnerService">
+    <Position X="10.5" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>wEAAAABAAAAAAAAAAAAIAKAAAAGBAAAAAAIAAAAABAA=</HashCode>
+      <FileName>BusinessPartnerService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
